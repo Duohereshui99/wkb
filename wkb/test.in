@@ -1,0 +1,15 @@
+#--------------------INPUT FOR WKB---------------------------
+!system info
+
+&systems    mass_1=4d0    z_1=2d0    mass_2=214d0    z_2=89d0  
+            L=5d0         Q=9.815d0                           / 
+
+!mesh info
+
+&meshs      n=1000      hcm=0.1d0   r1=0d0               /
+
+!P factor 
+
+&pfactor   P=0.35d0                           /
+
+

@@ -7,7 +7,9 @@ VERDATE := $(shell git log -1 --format=%cd  )
 VERREV := $(shell git log -1 --pretty=format:"%h")
 COMPDATE :=$(shell date)
 # 定义编译选项
-FFLAGS = -O3 -Wall -Wextra
+FFLAGS = -O3 -Wall -Wextra -ffixed-line-length-0 -cpp\
+-DBASE='"$(BASE)"' -DVERDATE='"$(VERDATE)"' -DVERREV='"$(VERREV)"' -DCOMPDATE='"$(COMPDATE)"'
+
 LDFLAGS = -llapack 
 #LDFLAGS = -llapack -lgsl
 # 定义需要链接的库

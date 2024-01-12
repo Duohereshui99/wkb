@@ -43,5 +43,14 @@ ccccccc
         real*8::Q,mu,v0,a,r0,z12,l,r
         kr=2d0*mu/hbarc**2*(Q-vpot(v0,a,r0,z12,mu,l,r))
         end function kr
-
+!!
+        real*8 function vtest(l,r)
+        real*8::r,l
+        vtest=l*(l+1d0)/r**2+10d0*sin(2d0*r)/r
+        end function
+!!      
+        real*8 function ktest(Q,mu,l,r)
+        real*8::Q,l,r,mu
+        ktest=(Q-vtest(l,r))!2d0*mu/hbarc**2*(Q-vtest(l,r))
+        end function
       end module
