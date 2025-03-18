@@ -10,22 +10,22 @@ ccccccc
         integer::i,j,k
         real*8::s,t
         real*8::t1,t2
-ccccccc
-        namelist /systems/ mass_1,z_1,mass_2,z_2,L,Q
-        namelist /meshs/ n,hcm,r1
-        namelist /Pfactor/ P
-ccccccc
+        !4He+209Bi
         call get_info()
         call cpu_time(t1)
-ccccccc
-        read(5,nml=systems)
-        read(5,nml=meshs)
-        read(5,nml=Pfactor)
-ccccccc
-
+        n=10000000
+        mass_1=4d0   
+        mass_2=207d0
+        z_1=2d0
+        z_2=82d0
+        L=5d0
         v0=162.3d0 !MeV
         a=0.4 !fm
-    !    P=0.35d0
+        P=0.03d0
+        Q=7.599d0!9.815d0 !MeV
+        hcm=0.00001d0 !fm
+        r1=0.8d0 !fm
+        r0=7.642d0
 ccccccc
         z12=z_1*z_2
         mu=amu*mass_1*mass_2/(mass_1+mass_2)
@@ -36,31 +36,18 @@ ccccccc
         allocate(fr(n))
         allocate(r(10))
 ccccccc
-        if (mass_1+mass_2-z_1-z_2>126d0) then
-          G=24d0
-        else if(mass_1+mass_2-z_1-z_2<=126d0.and.mass_1+mass_2-z_1-z_2>82) then
-          G=22d0
-        else 
-          G=20d0
-        end if
-ccccccc
-        G=23d0
-ccccccc
-        write(*,*) 'global quantum num G:',G
+        G=21d0
 ccccccc
         do i=1,n
           rr(i)=r1+hcm*i
         end do
 ccccccc
-         s=0d0
-         r0=mass_2**(1d0/3d0)*1.2d0!7.64d0
-         do while(abs(s-(G-L+1d0)*pi/2d0)>1e-1)
-ccccccc
         do i=1,n        !!k^2=2mu/h^2(Q-V(r))=k^2,|k|=sqrt(abs(k^2))
           fr(i)=kr(Q,mu,v0,a,r0,z12,l,rr(i))
+          write(33,*) rr(i),fr(i)
         end do
 ccccccc
-        k=1
+        k=0
         do i=1,n-1      !!where Q=V(r),r(i) -> rr(r(i)) -> r_i
           if(fr(i)*fr(i+1)<0) then 
             r(k)=i
@@ -72,14 +59,12 @@ ccccccc
         do i=r(1),r(2)    !!\int_{r_1}^{r_2}dr\sqrt{2\mu/\hbar^2(Q-V(r))}=\int |k(r)|dr
           s=s+hcm*sqrt(abs(fr(i)))
         end do
-         r0=r0+0.001d0    !!do while loop body
-         end do
+
 ccccccc
          write(*,*) 'r0=',r0
          write(*,*) rr(r(1)),rr(r(2)),rr(r(3))
-         write(*,*) 'the number of zeroes where Q=V(r):',k-1
-        write(*,*) 'the integration of the first well:',s
-        write(*,*) '(G-L+1)*pi/2=',(G-L+1)*pi/2
+         write(*,*) 'the number of zeroes where Q=V(r):',k
+
 ccccccc
           F=0d0 
         !   do i=r(1),r(2)
@@ -105,7 +90,7 @@ ccccccc
           write(*,*) 'exp(-2d0*t):',exp(-2d0*t)
           write(*,*) 'P*F*hbarc**2/4d0/mu:',P*F*hbarc**2/4d0/mu
 ccccccc
-          gamma=P*F*hbarc**2/4d0/mu*exp(-2d0*t)
+          gamma=F*exp(-2d0*t)!P*F*hbarc**2/4d0/mu*exp(-2d0*t)
           t_half=hbarc*log(2d0)/gamma                   !!fm
           t_half=t_half*ratio!/3/1e23                            !!s
 ccccccc
