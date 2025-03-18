@@ -13,7 +13,7 @@ ccccccc
         !4He+209Bi
         call get_info()
         call cpu_time(t1)
-        n=10000000
+        n=1000000
         mass_1=4d0   
         mass_2=207d0
         z_1=2d0
@@ -23,7 +23,7 @@ ccccccc
         a=0.4 !fm
         P=0.03d0
         Q=7.599d0!9.815d0 !MeV
-        hcm=0.00001d0 !fm
+        hcm=0.0001d0 !fm
         r1=0.8d0 !fm
         r0=7.642d0
 ccccccc
@@ -47,13 +47,14 @@ ccccccc
           write(33,*) rr(i),fr(i)
         end do
 ccccccc
-        k=0
+        k=1
         do i=1,n-1      !!where Q=V(r),r(i) -> rr(r(i)) -> r_i
           if(fr(i)*fr(i+1)<0) then 
             r(k)=i
             k=k+1
           end if
         end do
+
 ccccccc
         s=0d0
         do i=r(1),r(2)    !!\int_{r_1}^{r_2}dr\sqrt{2\mu/\hbar^2(Q-V(r))}=\int |k(r)|dr
@@ -63,20 +64,20 @@ ccccccc
 ccccccc
          write(*,*) 'r0=',r0
          write(*,*) rr(r(1)),rr(r(2)),rr(r(3))
-         write(*,*) 'the number of zeroes where Q=V(r):',k
+         write(*,*) 'the number of zeroes where Q=V(r):',k-1
 
 ccccccc
           F=0d0 
-        !   do i=r(1),r(2)
-        !     s=0d0 
-        !     do j=r(1),i           !!int_r1^r dr'
-        !       s=s+hcm*sqrt(abs(fr(j)))
-        !     end do                                    
-        !     F=F+hcm*(cos(s-pi/4d0))**2/sqrt(abs(fr(i)))     !!int_r1^r2 dr
-        !   end do
           do i=r(1),r(2)
-            F=F+hcm/2d0/sqrt(abs(fr(i)))
+            s=0d0 
+            do j=r(1),i           !!int_r1^r dr'
+              s=s+hcm*sqrt(abs(fr(j)))
+            end do                                    
+            F=F+hcm*(cos(s-pi/4d0))**2/sqrt(abs(fr(i)))     !!int_r1^r2 dr
           end do
+        !   do i=r(1),r(2)
+        !     F=F+hcm/2d0/sqrt(abs(fr(i)))
+        !   end do
           !!F goes reciprocally to get normalization factor F
           F=1d0/F
           write(*,*) 'normalization factor F:',F
@@ -90,9 +91,9 @@ ccccccc
           write(*,*) 'exp(-2d0*t):',exp(-2d0*t)
           write(*,*) 'P*F*hbarc**2/4d0/mu:',P*F*hbarc**2/4d0/mu
 ccccccc
-          gamma=F*exp(-2d0*t)!P*F*hbarc**2/4d0/mu*exp(-2d0*t)
+          gamma=P*F*hbarc**2/4d0/mu*exp(-2d0*t)
           t_half=hbarc*log(2d0)/gamma                   !!fm
-          t_half=t_half*ratio!/3/1e23                            !!s
+          t_half=t_half/3d0/1e23                            !!s
 ccccccc
           write(*,*) 'gamma:',gamma,'MeV'
           write(*,*) 'half life T:',t_half,'s'
