@@ -13,22 +13,22 @@ ccccccc
         !4He+209Bi
         call get_info()
         call cpu_time(t1)
-        n=1000000
-        mass_1=4d0   
-        mass_2=207d0
+        n=7000
+        mass_1=4d0*amu-2.4249156d0
+        mass_2=207d0*amu-22.4519d0
         z_1=2d0
         z_2=82d0
         L=5d0
         v0=162.3d0 !MeV
         a=0.4 !fm
         P=0.03d0
-        Q=7.599d0!9.815d0 !MeV
-        hcm=0.0001d0 !fm
-        r1=0.8d0 !fm
+        Q=7.599d0 !MeV
+        hcm=0.01d0 !fm
+        r1=0.01d0 !fm
         r0=7.642d0
 ccccccc
         z12=z_1*z_2
-        mu=amu*mass_1*mass_2/(mass_1+mass_2)
+        mu=mass_1*mass_2/(mass_1+mass_2)
 ccccccc
         write(*,*) 'Q value:',Q,'MeV'
 ccccccc
@@ -68,16 +68,16 @@ ccccccc
 
 ccccccc
           F=0d0 
-          do i=r(1),r(2)
-            s=0d0 
-            do j=r(1),i           !!int_r1^r dr'
-              s=s+hcm*sqrt(abs(fr(j)))
-            end do                                    
-            F=F+hcm*(cos(s-pi/4d0))**2/sqrt(abs(fr(i)))     !!int_r1^r2 dr
-          end do
         !   do i=r(1),r(2)
-        !     F=F+hcm/2d0/sqrt(abs(fr(i)))
+        !     s=0d0 
+        !     do j=r(1),i           !!int_r1^r dr'
+        !       s=s+hcm*sqrt(abs(fr(j)))
+        !     end do                                    
+        !     F=F+hcm*(cos(s-pi/4d0))**2/sqrt(abs(fr(i)))     !!int_r1^r2 dr
         !   end do
+          do i=r(1),r(2)
+            F=F+hcm/2d0/sqrt(abs(fr(i)))
+          end do
           !!F goes reciprocally to get normalization factor F
           F=1d0/F
           write(*,*) 'normalization factor F:',F
