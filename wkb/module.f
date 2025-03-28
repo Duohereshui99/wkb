@@ -4,8 +4,12 @@ ccccccc
             real*8::z_1             !charge
             real*8::z_2
             real*8::z12             !z1*z2
-            real*8::mass_1          !mass num
-            real*8::mass_2
+            real*8::m_1          !mass number,not MeV
+            real*8::m_2
+            real*8::mass_1
+            real*8::mass_2          !mass=mass number*amu+mass excess
+            real*8::mass_excess_1   !mass excess (MeV)
+            real*8::mass_excess_2
             real*8::mu              !reduced mass num
             real*8::L               !angular momentum num
             real*8::Q               !Q value

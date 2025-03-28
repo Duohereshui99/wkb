@@ -13,30 +13,25 @@ ccccccc
         !4He+209Bi
         call get_info()
         call cpu_time(t1)
-        n=7000
-        mass_1=4d0*amu-2.4249156d0
-        mass_2=207d0*amu-22.4519d0
-        z_1=2d0
-        z_2=82d0
-        L=5d0
-        v0=162.3d0 !MeV
-        a=0.4 !fm
-        P=0.03d0
-        Q=7.599d0 !MeV
-        hcm=0.01d0 !fm
-        r1=0.01d0 !fm
-        r0=7.642d0
+        n=50000
+        read(5,*) m_1,z_1,mass_excess_1,m_2,z_2,mass_excess_2,L
+        read(5,*) v0,a,r0,P,Q
+        
+        mass_1=m_1*amu+mass_excess_1
+        mass_2=m_2*amu+mass_excess_2
+
+
+        hcm=0.001d0 !fm
+        r1=0.01d0 !fm,starting point
 ccccccc
         z12=z_1*z_2
         mu=mass_1*mass_2/(mass_1+mass_2)
-ccccccc
-        write(*,*) 'Q value:',Q,'MeV'
 ccccccc
         allocate(rr(n))
         allocate(fr(n))
         allocate(r(10))
 ccccccc
-        G=21d0
+       ! G=21d0
 ccccccc
         do i=1,n
           rr(i)=r1+hcm*i
@@ -44,7 +39,6 @@ ccccccc
 ccccccc
         do i=1,n        !!k^2=2mu/h^2(Q-V(r))=k^2,|k|=sqrt(abs(k^2))
           fr(i)=kr(Q,mu,v0,a,r0,z12,l,rr(i))
-          write(33,*) rr(i),fr(i)
         end do
 ccccccc
         k=1
@@ -60,10 +54,9 @@ ccccccc
         do i=r(1),r(2)    !!\int_{r_1}^{r_2}dr\sqrt{2\mu/\hbar^2(Q-V(r))}=\int |k(r)|dr
           s=s+hcm*sqrt(abs(fr(i)))
         end do
-
 ccccccc
-         write(*,*) 'r0=',r0
-         write(*,*) rr(r(1)),rr(r(2)),rr(r(3))
+
+         write(*,*) 'roots:',rr(r(1)),rr(r(2)),rr(r(3))
          write(*,*) 'the number of zeroes where Q=V(r):',k-1
 
 ccccccc
@@ -78,21 +71,17 @@ ccccccc
           do i=r(1),r(2)
             F=F+hcm/2d0/sqrt(abs(fr(i)))
           end do
+
           !!F goes reciprocally to get normalization factor F
           F=1d0/F
-          write(*,*) 'normalization factor F:',F
 ccccccc
           t=0d0
           do i=r(2),r(3)
             t=t+hcm*sqrt(abs(fr(i)))
           end do                  !!width gamma
 ccccccc
-          write(*,*) 't:',t
-          write(*,*) 'exp(-2d0*t):',exp(-2d0*t)
-          write(*,*) 'P*F*hbarc**2/4d0/mu:',P*F*hbarc**2/4d0/mu
-ccccccc
           gamma=P*F*hbarc**2/4d0/mu*exp(-2d0*t)
-          t_half=hbarc*log(2d0)/gamma                   !!fm
+          t_half=hbarc*log(2d0)/gamma                  !!fm
           t_half=t_half/3d0/1e23                            !!s
 ccccccc
           write(*,*) 'gamma:',gamma,'MeV'

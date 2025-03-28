@@ -45,9 +45,3 @@ print-info:
 	@echo "Version Revision: $(VERREV)"
 	@echo "Compilation Date: $(COMPDATE)"
 
-# run: wkb
-# 	./wkb < test.in
-# 	@echo "Base path: $(BASE)"
-# 	@echo "Version Date: $(VERDATE)"
-# 	@echo "Version Revision: $(VERREV)"
-# 	@echo "Compilation Date: $(COMPDATE)"	
