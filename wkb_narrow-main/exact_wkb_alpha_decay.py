@@ -1226,8 +1226,8 @@ def plot_preformation_comparison(results):
         spine.set_linewidth(1.5)
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/preformation_comparison.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/preformation_comparison.pdf', bbox_inches='tight')
+    plt.savefig('preformation_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('preformation_comparison.pdf', bbox_inches='tight')
     plt.close()
     print("\nSaved: preformation_comparison.png/pdf")
 
@@ -1286,8 +1286,8 @@ def plot_shell_structure(results):
            verticalalignment='bottom', bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/shell_structure.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/shell_structure.pdf', bbox_inches='tight')
+    plt.savefig('shell_structure.png', dpi=300, bbox_inches='tight')
+    plt.savefig('shell_structure.pdf', bbox_inches='tight')
     plt.close()
     print("Saved: shell_structure.png/pdf")
 
@@ -1317,8 +1317,8 @@ def plot_sensitivity_analysis(sens_results):
         spine.set_linewidth(1.5)
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/sensitivity_analysis.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/sensitivity_analysis.pdf', bbox_inches='tight')
+    plt.savefig('sensitivity_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig('sensitivity_analysis.pdf', bbox_inches='tight')
     plt.close()
     print("Saved: sensitivity_analysis.png/pdf")
 
@@ -1481,8 +1481,8 @@ def plot_woods_saxon_sensitivity(ws_results):
         spine.set_linewidth(1.5)
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/woods_saxon_sensitivity.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/woods_saxon_sensitivity.pdf', bbox_inches='tight')
+    plt.savefig('woods_saxon_sensitivity.png', dpi=300, bbox_inches='tight')
+    plt.savefig('woods_saxon_sensitivity.pdf', bbox_inches='tight')
     plt.close()
     print("Saved: woods_saxon_sensitivity.png/pdf")
 

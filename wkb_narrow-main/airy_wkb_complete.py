@@ -759,8 +759,8 @@ def plot_detailed_comparison(results):
     ax4.grid(axis='y', alpha=0.3)
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/airy_detailed_comparison.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/airy_detailed_comparison.pdf', bbox_inches='tight')
+    plt.savefig('airy_detailed_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('airy_detailed_comparison.pdf', bbox_inches='tight')
     plt.close()
     print("\nSaved: airy_detailed_comparison.png/pdf")
 
