@@ -692,8 +692,8 @@ def plot_superheavy_results(results):
     ax4.set_title('(d) Penetrability Enhancement', fontsize=14, fontweight='bold')
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/superheavy_airy_analysis.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/superheavy_airy_analysis.pdf', bbox_inches='tight')
+    plt.savefig('superheavy_airy_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig('superheavy_airy_analysis.pdf', bbox_inches='tight')
     plt.close()
     print("\nSaved: superheavy_airy_analysis.png/pdf")
 
@@ -764,8 +764,8 @@ def plot_decay_chains(results):
         ax2.set_title(r'$^{273}$Ds decay chain', fontsize=14, fontweight='bold')
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/ds_decay_chains.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/ds_decay_chains.pdf', bbox_inches='tight')
+    plt.savefig('ds_decay_chains.png', dpi=300, bbox_inches='tight')
+    plt.savefig('ds_decay_chains.pdf', bbox_inches='tight')
     plt.close()
     print("Saved: ds_decay_chains.png/pdf")
 
