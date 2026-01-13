@@ -20,9 +20,6 @@ Higher-Order WKB Corrections to Alpha-Decay Half-Lives
 - G. Gamow, Z. Phys. 51, 204 (1928)
 - O. Morikawa & S. Ogawa, arXiv:2510.11766 (2025)
 - N. Froman & P.O. Froman, "JWKB Approximation" (1965)
-
-Author: Jin Lei
-Date: 2025-12-23
 """
 
 import numpy as np
@@ -635,8 +632,8 @@ def analyze_V0_correlation():
     for spine in ax.spines.values():
         spine.set_linewidth(1.5)
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/v0_vs_gamma.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/v0_vs_gamma.pdf', bbox_inches='tight')
+    plt.savefig('v0_vs_gamma.png', dpi=300, bbox_inches='tight')
+    plt.savefig('v0_vs_gamma.pdf', bbox_inches='tight')
     plt.close()
     print("\nSaved: v0_vs_gamma.png/pdf")
 
@@ -875,9 +872,9 @@ def plot_o0_vs_o2(results):
            verticalalignment='top', bbox=dict(boxstyle='round', facecolor='white', alpha=0.9))
 
     plt.tight_layout()
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/o0_vs_o2_long_lived.png', dpi=300, bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/o0_vs_o2_long_lived.pdf', bbox_inches='tight')
-    plt.savefig('/Users/jinlei/Desktop/code/narrow_resonance/o0_vs_o2_long_lived.eps', bbox_inches='tight')
+    plt.savefig('o0_vs_o2_long_lived.png', dpi=300, bbox_inches='tight')
+    plt.savefig('o0_vs_o2_long_lived.pdf', bbox_inches='tight')
+    plt.savefig('o0_vs_o2_long_lived.eps', bbox_inches='tight')
     plt.close()
     print("Saved: o0_vs_o2_long_lived.png/pdf/eps")
 
@@ -940,8 +937,8 @@ def plot_s2_contribution(nucleus='U238', use_optimized_V0=True):
         spine.set_linewidth(1.5)
 
     plt.tight_layout()
-    plt.savefig(f'/Users/jinlei/Desktop/code/narrow_resonance/s2_contribution_{nucleus}.png', dpi=300, bbox_inches='tight')
-    plt.savefig(f'/Users/jinlei/Desktop/code/narrow_resonance/s2_contribution_{nucleus}.pdf', bbox_inches='tight')
+    plt.savefig(f's2_contribution_{nucleus}.png', dpi=300, bbox_inches='tight')
+    plt.savefig(f's2_contribution_{nucleus}.pdf', bbox_inches='tight')
     plt.close()
     print(f"Saved: s2_contribution_{nucleus}.png/pdf")
 

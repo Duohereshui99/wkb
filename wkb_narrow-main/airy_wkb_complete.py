@@ -28,8 +28,6 @@ References:
 - Child, "Semiclassical Mechanics with Molecular Applications" (1991)
 - Heading, "An Introduction to Phase-Integral Methods" (1962)
 
-Author: Jin Lei
-Date: 2025-12-23
 """
 
 import numpy as np

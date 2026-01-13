@@ -10,8 +10,6 @@ Key features:
 - Proper centrifugal barrier for ℓ ≠ 0 unfavored transitions
 - Data from Table II including spin-parity assignments
 
-Author: Jin Lei
-Date: 2025-12-23
 """
 
 import numpy as np
